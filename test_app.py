@@ -1,14 +1,6 @@
-import unittest
 from app import app
 
-class TestApp(unittest.TestCase):
-    def setUp(self):
-        self.app = app.test_client()
-
-    def test_hello(self):
-        response = self.app.get('/')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Hello, DevOps!', response.data)
-
-if __name__ == '__main__':
-    unittest.main()
+def test_home():
+    response = app.test_client().get('/')
+    assert response.status_code == 200
+    assert b"Hello, DevOps" in response.data
